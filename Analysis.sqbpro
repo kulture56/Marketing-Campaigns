@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="main_campaigns_dataset.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2759"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="AllData" custom_title="0" dock_id="4" table="4,7:mainAllData"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000003fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000ffffffff0000011e00ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT CampaignName, CASE
+       WHEN EndDate IS NULL THEN &quot;Active&quot;
+	   ELSE &quot;Completed&quot;
+END AS CampaignStatus
+FROM Campaigns;
+
+SELECT Customers.CustomerID, Customers.CustomerName, CASE
+       WHEN SUM(Sales.TotalAmount) &gt;= 300 THEN &quot;VIP&quot;
+	   WHEN SUM(Sales.TotalAmount) &gt;=  100 THEN &quot;Preferred&quot;
+	  ELSE &quot;Standard&quot; 
+	  END AS CustomerLoyaltyCategory
+	  FROM Sales
+	  JOIN Customers ON Customers.CustomerID = Sales.CustomerID
+GROUP BY Customers.CustomerID;
+
+SELECT ProductName, (TotalAmount / Quantity) AS CostPerProduct
+FROM Sales
+ORDER BY CostPerProduct ASC;
+
+SELECT ProductName, 10 - COUNT(*) as SalesFromGoal
+FROM Sales
+GROUP BY ProductName 
+ORDER BY SalesFromGoal;
+
+SELECT Customers.CustomerName, CustomerProfile.BirthDate, 
+       CASE
+       WHEN (CustomerProfile.BirthDate)  BETWEEN '1981-01-01' AND '1996-12-31' THEN &quot;Millenial&quot;
+	   ELSE &quot;GENZ&quot; 
+	   END AS CustomerGeneration 
+FROM CustomerProfile
+JOIN Customers ON CustomerProfile.CustomerID = Customers.CustomerID;
+
+SELECT CampaignName, SUM(Budget) AS BudgetCategory, CASE
+       WHEN SUM(Budget) &gt;= 10000 THEN 'High'
+	   WHEN SUM(Budget) BETWEEN 5000 AND 10000 THEN 'Medium'
+	   ELSE &quot;Low&quot;
+	   END AS BudgetCategory
+FROM Campaigns
+GROUP BY CampaignName
+ORDER BY BudgetCategory ASC; 
+
+SELECT 
+CASE 
+  WHEN InteractionTime &gt;= &quot;07:00&quot; AND InteractionTime &lt;= &quot;12:00&quot;  THEN &quot;Morning&quot;
+  WHEN InteractionTime &lt;= &quot;16:00&quot; THEN &quot;Midday&quot;
+  WHEN InteractionTime &lt;= &quot;23:00&quot; THEN &quot;Evening&quot;
+END as InteractionTimeOfDay,
+COUNT(*) as NumberOfInteractions
+FROM Interactions
+GROUP BY InteractionTimeOfDay;
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="main_campaigns_dataset.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2759"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="AllData" custom_title="0" dock_id="4" table="4,7:mainAllData"/><dock_state state="000000ff00000000fd0000000100000002000002d800000241fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000000002d80000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000ffffffff0000011e00ffffff000002690000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT AVG(Budget) AS average_campaign_Budget
+FROM Campaigns;
+
+SELECT COUNT (*)  AS total_campaigns
+FROM Campaigns;
+
+SELECT MAX(Budget) AS smallest_campaign_Budget
+FROM Campaigns;
+
+SELECT COUNT (*)  AS total_sales
+FROM Sales;
+
+SELECT AVG(TotalAmount) AS average_Total_Amount
+FROM Sales;
+
+SELECT MIN(TotalAmount) AS smallest_Total_Amount
+FROM Sales;
+
+SELECT SUM(TotalAmount) AS total_sales
+FROM Sales;
+
+SELECT *
+FROM Customers;
+
+SELECT COUNT(*) AS total_interactions, MAX(InteractionDate) AS latest_interactions_date
+FROM Interactions;
+
+SELECT COUNT(*) AS total_sales, AVG(TotalAmount) AS average_sales
+FROM Sales;
+
+SELECT COUNT(*) AS total_campaigns, AVG(Budget) AS average_budget
+FROM Campaigns;
+
+SELECT COUNT(*) AS total_customers, MIN(RegistrationDate) AS earliest_registration_date
+FROM Customers;
+
+SELECT SUM(Quantity), SUM(TotalAmount)
+FROM Sales;
+
+SELECT SUM(Quantity) AS total_quantity_sold, 
+AVG(Quantity) AS average_quantity_per_sale
+FROM Sales;
+
+SELECT CustomerID, SUM(TotalAmount) AS total_revenue
+FROM Sales
+Group BY CustomerID;
+
+SELECT InteractionType, COUNT(*)
+FROM Interactions
+GROUP BY InteractionType;
+
+SELECT ProductName, MAX(TotalAmount) AS total_sales
+FROM Sales
+GROUP BY ProductName;
+
+SELECT ProductName, SUM(Quantity) AS total_quantity
+FROM Sales
+GROUP BY ProductName;
+
+SELECT ProductName, MIN(PurchaseDate) AS earliest_date
+FROM Sales
+GROUP BY ProductName;
+
+SELECT ProductName, MAX(PurchaseDate)
+FROM Sales
+GROUP BY ProductName
+ORDER BY PurchaseDate DESC;
+
+SELECT CustomerID, COUNT(*) AS total_purchase, SUM(TotalAmount) AS total_spent
+FROM Sales
+GROUP BY CustomerID
+HAVING COUNT(*) &gt; 2 AND SUM(TotalAmount) &gt;=200;
+
+SELECT ProductName, COUNT(*) AS number_of_purchases
+FROM Sales
+GROUP BY ProductName
+HAVING COUNT(*) &gt; 5;
+
+SELECT CampaignID, COUNT(*) AS total_interactions
+FROM Interactions
+GROUP BY CampaignID
+HAVING COUNT(*) &gt; 6;
+
+SELECT CustomerID, SUM(TotalAmount) AS total_spent
+FROM Sales
+GROUP BY CustomerID
+HAVING SUM(TotalAmount) &gt; 500;
+
+SELECT ProductName, SUM(Quantity) AS tatal_sales
+from Sales
+GROUP BY ProductName
+HAVING SUM(Quantity) &gt; 10;
+
+SELECT ProductName, SUM(TotalAmount) AS total_revenue
+FROM Sales
+GROUP BY TotalAmount
+HAVING SUM(TotalAmount) &gt; 500;
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
