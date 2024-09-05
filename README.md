@@ -1,4 +1,4 @@
-# Main-Campaign-Projects
+# Main-Campaign-Project
 **Overview**
 This project provides a comprehensive business analysis framework using SQLite. The repository contains scripts and data that focus on analyzing business campaigns through SQL commands for filtering, sorting, and aggregating business data.
 
