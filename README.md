@@ -19,9 +19,7 @@ This project provides a comprehensive business analysis framework using SQLite. 
 2) Project Analysis Files: Documentation and project files in .docx format detailing the campaign analysis.
 3) Datasets: Business campaign datasets in SQLite format for analysis.
 
-
-
-   **Key Inquiries and Solutions**
+ **Key Inquiries and Solutions**
    
    
 1) Which campaigns have generated the most revenue?
