@@ -1,4 +1,4 @@
-# Main-Campaign-Project
+# Marketing-Campaign
 
 ![Marketing analysis](https://github.com/user-attachments/assets/0dba9072-2057-4f28-8ec5-515863ecf26c)
 
